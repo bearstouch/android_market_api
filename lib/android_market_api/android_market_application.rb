@@ -1,15 +1,17 @@
-###########################################
-#
-# Android Market Parser
-# Creaated: 12/11/2011
-# Author: Hélder VAsconcelos (heldervasc@bearstouch.com)
-#
-#############################################
+#!/usr/bin/env ruby
+#--
+# Copyright 2011 by Helder Vasconcelos (heldervasc@bearstouch.com).
+# All rights reserved.
+
+# Permission is granted for use, copying, modification, distribution,
+# and distribution of modified versions of this work as long as the
+# above copyright notice is included.
+#++
 require 'rubygems'
 require 'hpricot' 
 require 'open-uri'
 
-module AndroidMarketAPI
+module AndroidMarketApi
 
 class AndroidMarketApplication 
   
