@@ -1,4 +1,4 @@
-<h2>Android Market Library for parsing Android Market.</h2>
+Android Market Library for parsing Android Market.
 
 This is a unoficial API Managed by Bearstouch Software
 
@@ -7,4 +7,26 @@ This project is under development.
 Fell free to clone it and submit your changes to us.
 
 Soon it will be available on Rubygem Website
+
+For parsing an application on Android Market
+
+Ex:
+
+require 'rubygems'
+require 'android_market_api'
+
+$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
+$app.to_s
+
+
+For getting Top Selling Apps 
+
+Ex:
+
+require 'rubygems'
+require 'android_market_api'
+
+app_arr=AndroidMarket.get_top_selling_paid_apps('CASUAL')
+app_arr[2].to_s
+
 
