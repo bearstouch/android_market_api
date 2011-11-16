@@ -19,7 +19,7 @@ $app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
 $app.to_s
 
 
-For getting Top Selling Apps 
+For getting Top Selling Paid Apps for a category
 
 Ex:
 
@@ -28,5 +28,18 @@ require 'android_market_api'
 
 app_arr=AndroidMarket.get_top_selling_paid_apps('CASUAL')
 app_arr[2].to_s
+
+
+For getting Top Selling Free Apps for a category
+
+Ex:
+
+require 'rubygems'
+require 'android_market_api'
+
+app_arr=AndroidMarket.get_top_selling_free_apps('CASUAL')
+app_arr[1].to_s
+
+
 
 
