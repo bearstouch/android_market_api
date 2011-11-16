@@ -1,15 +1,13 @@
-#!/usr/bin/env ruby
-#--
 # Copyright 2011 by Helder Vasconcelos (heldervasc@bearstouch.com).
 # All rights reserved.
 
 # Permission is granted for use, copying, modification, distribution,
 # and distribution of modified versions of this work as long as the
 # above copyright notice is included.
-#++
 require 'rubygems'
-require 'hpricot' 
 require 'open-uri'
+require 'hpricot' 
+
 
 module AndroidMarketApi
 
@@ -33,7 +31,7 @@ class AndroidMarketApplication
   @icon=""              # Icon URL 
   @update_text          # Last Updates Array
   
-  @@debug=0
+  @@debug=1
 
   ###########################################################################################
   #  Contructor: Example Usage AndroidMarketApplication.new("com.bearstouch.smsscheduler")
@@ -49,6 +47,7 @@ class AndroidMarketApplication
   def parseInAndroidMarket(language)
     
     url="https://market.android.com/details?id="+@package+"&hl="+language
+    
     puts "Getting URL="+url if @@debug == 1
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     fill_application_name(doc) 
@@ -73,41 +72,62 @@ class AndroidMarketApplication
   end  
   
   def fill_application_name(doc)
-     @name=doc.at("dl[@class='doc-metadata-list']/meta[@itemprop='name']")['content']
+     element=doc.at("dl[@class='doc-metadata-list']/meta[@itemprop='name']")
+     if element 
+     @name=element['content']
      puts "Apllication name ="+@name.to_s  if @@debug == 1
+   end
   end
   
   def fill_current_version(doc)    
-     @current_version=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='softwareVersion']").inner_html
+     element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='softwareVersion']")
+      if element 
+     @current_version=element.inner_html
      puts "Apllication Version="+@current_version.to_s if @@debug == 1
+   end
   end
   
   def fill_price(doc)
-    @price=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='offers']/span[@itemprop='price']")['content']
+    element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='offers']/span[@itemprop='price']")
+    if element 
+    @price=element['content']
      puts "Apllication Price="+@price.to_s if @@debug == 1
+   end
     
   end
   
   def fill_ratting_value(doc)
-     @ratting_value=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='aggregateRating']/div[@itemprop='ratingValue']")['content']
+    element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='aggregateRating']/div[@itemprop='ratingValue']")
+    if element 
+     @ratting_value=element['content']
        puts "Apllication Ratting Value ="+@ratting_value.to_s if @@debug == 1
+     end
   end
   
   def fill_ratting_count(doc)
-    @ratting_count=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='aggregateRating']/span[@itemprop='ratingCount']").inner_html
+    element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='aggregateRating']/span[@itemprop='ratingCount']")
+    if element 
+    @ratting_count=element.inner_html
     puts "Apllication ratting_count="+@ratting_count.to_s if @@debug == 1
+  end
     
   end
   
   def fill_updated_at(doc) 
-      @updated=doc.at("dl[@class='doc-metadata-list']/dd/time[@itemprop='datePublished']").inner_html
+    element=doc.at("dl[@class='doc-metadata-list']/dd/time[@itemprop='datePublished']")
+    if element 
+      @updated=element.inner_html
         puts "Apllication updated="+@updated.to_s if @@debug == 1
+      end
     
   end
   
   def fill_sdk_required(doc)
-    @sdk_required=doc.at("dl[@class='doc-metadata-list']/dt[@itemprop='operatingSystems']").next_node.inner_html
+    element=doc.at("dl[@class='doc-metadata-list']/dt[@itemprop='operatingSystems']")
+    if element 
+    @sdk_required=element.next_node.inner_html
     puts "Apllication SDK="+@sdk_required.to_s   if @@debug == 1
+  end
   end
   
   def fill_category(doc)
@@ -116,49 +136,73 @@ class AndroidMarketApplication
   end
 
   def fill_downloads(doc)
-     @downloads=doc.at("dd[@itemprop='numDownloads']").children.first
+    element=doc.at("dd[@itemprop='numDownloads']")
+    if element 
+     @downloads=element.children.first
       puts "Apllication install category="+@downloads.to_s if @@debug == 1
+    end
     
   end
 
   def fill_size(doc)
-    @size=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='fileSize']").inner_html
+    element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='fileSize']")
+    if element 
+    @size=element.inner_html
     puts "Apllication Size="+@size.to_s if @@debug == 1
+  end
     
   end
   
   def fill_content_rating(doc)
-     @contentRating=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='contentRating']").inner_html
+    element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='contentRating']")
+    if element 
+     @contentRating=element.inner_html
       puts "Apllication Content Rating="+@contentRating.to_s if @@debug == 1
+    end
   end
 
   def fill_description(doc)
-    @description=doc.at("div[@id='doc-original-text']").inner_html
+    element=doc.at("div[@id='doc-original-text']")
+    if element
+    @description=element.inner_html
     puts "Apllication Description ="+@description.to_s   if @@debug == 1
+  end
    end
    
   def fill_screenshots(doc)
-     (doc/"div[@class='screenshot-carousel-content-container']/img").each  do |img|         
+    element_ar=(doc/"div[@class='screenshot-carousel-content-container']/img")
+    if element_ar 
+    element_ar.each  do |img|         
         puts "addding "+img['src'].to_s if @@debug == 1   
         @screenshots.push(img['src'].to_s)
      end
+   end
   end
 
   def fill_developer_name(doc) 
-     @developer_name=doc.at("a[@class='doc-header-link']").inner_html
+    element=doc.at("a[@class='doc-header-link']")
+    if element
+     @developer_name=element.inner_html
         puts "Apllication Author= "+@developer_name.to_s if @@debug == 1
+      end
   end
 
-  def fill_icon(doc)
-    @icon=doc.at("div[@class='doc-banner-icon']/img")['src']
+  def fill_icon(doc)    
+    element=doc.at("div[@class='doc-banner-icon']/img")
+    if element 
+    @icon=element['src']
     puts "Apllication Icon= "+@icon.to_s if @@debug == 1
   end
+  end
   
-  def fill_changed_text(doc)    
-     (doc/"div[@class='doc-whatsnew-container']/ol/li").each  do |parag|
+  def fill_changed_text(doc)  
+    element_ar=(doc/"div[@class='doc-whatsnew-container']/ol/li")  
+    if element_ar 
+     element_ar.each  do |parag|
           puts "Apllication Update= "+parag.inner_html if @@debug == 1
             @update_text << parag.inner_html
      end
+   end
   end
   
   def to_s()

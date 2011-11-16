@@ -1,15 +1,13 @@
-#!/usr/bin/env ruby
-#--
 # Copyright 2011 by Helder VAsconcelos (heldervasc@bearstouch.com).
 # All rights reserved.
 
 # Permission is granted for use, copying, modification, distribution,
 # and distribution of modified versions of this work as long as the
 # above copyright notice is included.
-#++
 require 'rubygems'
 require 'hpricot' 
 require 'open-uri'
+require 'openssl'
 require 'android_market_api/android_market_application'
 
 module AndroidMarketApi
