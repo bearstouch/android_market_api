@@ -1,4 +1,3 @@
-#!/opt/local/bin/ruby
 ###########################################
 #
 # Android Market Parser
@@ -10,6 +9,6 @@ require 'rubygems'
 require 'android_market_api'
 
 puts "Starting ...."
-$app=AndroidMarketApi::AndroidMarketApplication.new('com.zeptolab.ctr.paid')
+$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
 $app.to_s
 puts "Ending"

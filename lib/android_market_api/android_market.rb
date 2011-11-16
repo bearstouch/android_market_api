@@ -7,11 +7,8 @@
 require 'rubygems'
 require 'hpricot' 
 require 'open-uri'
-require 'openssl'
 require 'android_market_api/android_market_application'
 
-module AndroidMarketApi
-  
 class AndroidMarket
 
 @@game_categories=Array.[]('ARCADE','BRAIN','CARDS','CASUAL','GAME_WALLPAPER','RACING','SPORTS_GAMES','GAME_WIDGETS')
@@ -62,4 +59,3 @@ class AndroidMarket
   
 end  
 
-end
