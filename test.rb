@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 ###########################################
 #
 # Android Market Parser

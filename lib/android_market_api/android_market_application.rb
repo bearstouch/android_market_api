@@ -45,23 +45,23 @@ class AndroidMarketApplication
     
     url="https://market.android.com/details?id="+@package+"&hl="+language  
     puts "Getting URL="+url if @@debug == 1
-    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    fill_application_name(doc) 
-    fill_current_version(doc)  
-    fill_price(doc)
-    fill_ratting_value(doc)
-    fill_ratting_count(doc)
-    fill_updated_at(doc)
-    fill_sdk_required(doc)
-    fill_category(doc)
-    fill_downloads(doc)
-    fill_size(doc)
-    fill_content_rating(doc)
-    fill_description(doc)
-    fill_screenshots(doc)
-    fill_developer_name(doc) 
-    fill_icon(doc)    
-    fill_changed_text(doc)
+    doc = Hpricot(open(url,'User-Agent' => 'ruby'))  
+    fill_current_version(doc.root)  
+    fill_ratting_value(doc.root)
+    fill_ratting_count(doc.root)
+    fill_updated_at(doc.root)
+    fill_sdk_required(doc.root)
+    fill_category(doc.root)
+    fill_downloads(doc.root)
+    fill_size(doc.root)
+    fill_price(doc.root)
+    fill_content_rating(doc.root)
+    fill_application_name(doc.root)
+    fill_description(doc.root)
+    fill_screenshots(doc.root)
+    fill_developer_name(doc.root)
+    fill_icon(doc.root)    
+    fill_changed_text(doc.root)
     
   end  
   
@@ -84,7 +84,7 @@ class AndroidMarketApplication
   def fill_price(doc)
     element=doc.at("dl[@class='doc-metadata-list']/dd[@itemprop='offers']/span[@itemprop='price']")
     if element 
-      @price=element['content']
+      @price=element.inner_html
       puts "Apllication Price="+@price.to_s if @@debug == 1
     end    
   end
@@ -216,7 +216,7 @@ class AndroidMarketApplication
   
 end  
 
-#puts "Starting ...."
-#$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
-#$app.to_s
-#puts "Ending"
+puts "Starting ...."
+$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
+$app.to_s
+puts "Ending"
