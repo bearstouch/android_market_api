@@ -217,7 +217,7 @@ class AndroidMarketApplication
   
 end  
 
-puts "Starting ...."
-$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
-$app.to_s
-puts "Ending"
+#puts "Starting ...."
+#$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
+#$app.to_s
+#puts "Ending"
