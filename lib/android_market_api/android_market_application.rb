@@ -15,28 +15,27 @@ class AndroidMarketApplication
   #  Contructor: Example Usage AndroidMarketApplication.new("com.bearstouch.smsscheduler")
   ############################################################################################
   def initialize(package,language='en')
-        
-        @package=package
-        @language=language;            
-        @name=""              # Application Name
-        @current_version=""    # Application Current Version
-        @price=""              # Application Price
-        @ratting_value=""      # Ratting Value
-        @ratting_count=""      # Nr of Votes
-        @updated=""           # Last Upfate datetime
-        @sdk_required=""      # SDK Required
-        @category=""          # Category
-        @downloads=""         # Ratting 
-        @size=""               # Application Size
-        @contentRating=""     # Content Ratting
-        @description=""       # Application description
-        @screenshots=""          # Screenshot URL Array
-        @developer_name=""    # Developer Name 
-        @icon=""              # Icon URL 
-        @update_text=""
-        @screenshots=Array.new
-        @update_text=Array.new
-        parseInAndroidMarket(language) 
+    @package=package
+    @language=language;            
+    @name=""              # Application Name
+    @current_version=""    # Application Current Version
+    @price=""              # Application Price
+    @ratting_value=""      # Ratting Value
+    @ratting_count=""      # Nr of Votes
+    @updated=""           # Last Upfate datetime
+    @sdk_required=""      # SDK Required
+    @category=""          # Category
+    @downloads=""         # Ratting 
+    @size=""               # Application Size
+    @contentRating=""     # Content Ratting
+    @description=""       # Application description
+    @screenshots=""          # Screenshot URL Array
+    @developer_name=""    # Developer Name 
+    @icon=""              # Icon URL 
+    @update_text=""
+    @screenshots=Array.new
+    @update_text=Array.new
+    parseInAndroidMarket(language) 
   end  
   
   ############################################
