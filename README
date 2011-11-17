@@ -8,7 +8,7 @@ Fell free to clone it and submit your changes to us.
 
 Soon it will be available on Rubygem Website
 
-For parsing an application on Android Market
+### For parsing an application on Android Market
 
 Ex:
 
@@ -19,7 +19,7 @@ $app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
 $app.to_s
 
 
-For getting Top Selling Paid Apps for a category
+### For getting Top Selling Paid Apps for a category
 
 Ex:
 
