@@ -6,7 +6,9 @@ This project is under development.
 
 Fell free to clone it and submit your changes to us.
 
-Soon it will be available on Rubygem Website
+INSTALL INSTRUCTIONS 
+
+gem install android_market_api
 
 For parsing an application on Android Market
 
