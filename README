@@ -40,6 +40,6 @@ require 'android_market_api'
 app_arr=AndroidMarket.get_top_selling_free_apps('CASUAL')
 app_arr[1].to_s
 
-
+SOON MORE DOCUMENTATION 
 
 
