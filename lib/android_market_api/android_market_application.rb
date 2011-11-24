@@ -4,17 +4,21 @@
 # Permission is granted for use, copying, modification, distribution,
 # and distribution of modified versions of this work as long as the
 # above copyright notice is included.
+
 require 'rubygems'
 require 'open-uri'
 require 'hpricot' 
 
 class AndroidMarketApplication 
     
+  attr_accessor :package, :language,:name, :current_version,:price, :ratting_value,:ratting_count, :updated,:sdk_required, :category,:downloads, :size,:contentRating,:description,:screenshots,:developer_name,:icon,:update_text
+    
   @@debug=0
   ###########################################################################################
   #  Contructor: Example Usage AndroidMarketApplication.new("com.bearstouch.smsscheduler")
   ############################################################################################
   def initialize(package,language='en')
+    
     @package=package
     @language=language;            
     @name=""              # Application Name
@@ -29,10 +33,8 @@ class AndroidMarketApplication
     @size=""               # Application Size
     @contentRating=""     # Content Ratting
     @description=""       # Application description
-    @screenshots=""          # Screenshot URL Array
     @developer_name=""    # Developer Name 
     @icon=""              # Icon URL 
-    @update_text=""
     @screenshots=Array.new
     @update_text=Array.new
     parseInAndroidMarket(language) 
@@ -193,7 +195,9 @@ class AndroidMarketApplication
      end
     end
   end
-  
+   
+  private :fill_current_version, :fill_ratting_value, :fill_ratting_count,:fill_updated_at,:fill_sdk_required,:fill_category,:fill_downloads,:fill_size,:fill_price,:fill_content_rating,:fill_application_name,:fill_description,:fill_screenshots,:fill_developer_name,:fill_icon,:fill_changed_text,:parseInAndroidMarket
+   
   def to_s()
     puts "-------------------------------------------------------------"
     puts " Application Name = "+@name.to_s
@@ -204,7 +208,7 @@ class AndroidMarketApplication
     puts " Application Ratting Count = "+@ratting_count.to_s
     puts " Application Updated = "+@updated.to_s
     puts " SDK required = "+@sdk_required.to_s
-  # puts " Category = "+@category.to_s
+    puts " Category = "+@category.to_s
     puts " Nr of Downloads = "+@downloads.to_s
     puts " Size = "+@size.to_s
     puts " Content Ratting = "+@contentRating.to_s
@@ -216,7 +220,4 @@ class AndroidMarketApplication
   
 end  
 
-puts "Starting ...."
-$app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
-$app.to_s
-puts "Ending"
+
