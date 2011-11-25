@@ -26,7 +26,7 @@ or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
 	require 'rubygems'
 	require 'android_market_api'
 
-	app=AndroidMarketApplication.new('com.zeptolab.ctr.paid')
+	app=AndroidMarketApplication.new('com.bearstouch.smsscheduler')
 	   
  	# Getting Application Name  
     puts app.name             
