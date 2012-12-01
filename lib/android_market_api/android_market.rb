@@ -8,7 +8,8 @@
 require 'rubygems'
 require 'hpricot' 
 require 'open-uri'
-require 'android_market_api/android_market_application'
+require 'cgi'
+require File.expand_path(File.dirname(__FILE__) + "/android_market_application")
 
 class AndroidMarket
 
@@ -52,6 +53,18 @@ class AndroidMarket
     puts "Getting Application package "+buy_div.attributes['data-docid']
     app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
     return app
+  end
+
+  def AndroidMarket.get_developer_app_list(developer_name, position, language='en')
+    url="https://play.google.com/store/apps/developer?id="+CGI.escape(developer_name)+"&start="+(position-1).to_s+"&num=24&hl="+language
+    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+    buy_lis=doc.search("li[@class='goog-inline-block']") 
+    apps = Array.new
+    buy_lis.each do |buy_li|
+      puts "Getting Application package "+buy_li.attributes['data-docid']
+      apps << AndroidMarketApplication.new(buy_li.attributes['data-docid'],language)
+    end
+    return apps 
   end
   
   def AndroidMarket.get_languages()
