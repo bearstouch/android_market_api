@@ -7,7 +7,7 @@
 #
 #############################################
 require 'rubygems'
-require 'android_market_api'
+require File.expand_path(File.dirname(__FILE__) + '/lib/android_market_api')
 
 #puts "Starting ...."
 app=AndroidMarketApplication.new('com.bearstouch.smsscheduler')

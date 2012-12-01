@@ -8,7 +8,7 @@
 require 'rubygems'
 require 'hpricot' 
 require 'open-uri'
-require 'android_market_api/android_market_application'
+require File.expand_path(File.dirname(__FILE__) + "/android_market_application")
 
 class AndroidMarket
 
