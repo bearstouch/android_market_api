@@ -69,7 +69,7 @@ class AndroidMarketApplication
   ############################################
   def parse_in_android_market(language)
 
-    url="https://market.android.com/details?id="+@package+"&hl="+language
+    url="https://play.google.com/store/apps/details?id="+@package+"&hl="+language
     puts "Getting URL="+url if @@debug == 1
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     fill_current_version(doc.root)
@@ -92,7 +92,7 @@ class AndroidMarketApplication
   end
 
   def fill_application_name(doc)
-     element=doc.at("dl[@class='doc-metadata-list']/meta[@itemprop='name']")
+     element=doc.at("span[@itemprop='name']")
      if element
        @name=element['content']
        puts "Application name ="+@name.to_s  if @@debug == 1
@@ -108,7 +108,7 @@ class AndroidMarketApplication
   end
 
   def fill_price(doc)
-    element=doc.at("meta[@itemprop='price']")
+    element=doc.at("span[@itemprop='price']")
     if element
       @price=element['content']
       puts "Application Price="+@price.to_s if @@debug == 1
@@ -132,7 +132,7 @@ class AndroidMarketApplication
   end
 
   def fill_updated_at(doc)
-    element=doc.at("dl[@class='doc-metadata-list']/dd/time[@itemprop='datePublished']")
+    element=doc.at("time[@itemprop='datePublished']")
     if element
       @updated=element.inner_html
       puts "Application updated="+@updated.to_s if @@debug == 1
@@ -140,7 +140,7 @@ class AndroidMarketApplication
   end
 
   def fill_sdk_required(doc)
-    element=doc.at("dl[@class='doc-metadata-list']/dt[@itemprop='operatingSystems']")
+    element=doc.at("dt[@itemprop='operatingSystems']")
     if element
       @sdk_required=element.next_node.inner_html
       puts "Application SDK="+@sdk_required.to_s   if @@debug == 1
