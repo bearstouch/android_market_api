@@ -38,7 +38,7 @@ class AndroidMarketApplication
     @developer_name=""    # Developer Name
     @icon=""              # Icon URL
     @screenshots=[]
-    @update_text=[]
+    @update_text=""
     parse_in_android_market(language)
   end
 
@@ -214,12 +214,10 @@ class AndroidMarketApplication
   end
 
   def fill_changed_text(doc)
-    element_ar=(doc/"div[@class='doc-whatsnew-container']")
-    if element_ar
-     element_ar.each  do |parag|
-        puts "Application Update= "+parag.inner_html if @@debug == 1
-        @update_text << parag.inner_html
-     end
+    element=(doc/"div[@class='doc-whatsnew-container']")
+    if element
+      @update_text=element.inner_html
+      puts "Application Update= "+element.inner_html if @@debug == 1
     end
   end
 
