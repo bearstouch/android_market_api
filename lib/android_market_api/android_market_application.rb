@@ -158,7 +158,7 @@ class AndroidMarketApplication
   def fill_downloads(doc)
     element=doc.at("dd[@itemprop='numDownloads']")
     if element
-      @downloads=element.children.first
+      @downloads=element.children.first.to_s
       puts "Application install category="+@downloads.to_s if @@debug == 1
     end
   end
@@ -188,7 +188,7 @@ class AndroidMarketApplication
   end
 
   def fill_screenshots(doc)
-    element_ar=(doc/"div[@class='screenshot-carousel-content-container']/img")
+    element_ar=(doc/"div[@class='screenshot-carousel-content-container']/div/img")
     if element_ar
       element_ar.each  do |img|
         puts "addding "+img['src'].to_s if @@debug == 1
@@ -214,7 +214,7 @@ class AndroidMarketApplication
   end
 
   def fill_changed_text(doc)
-    element_ar=(doc/"div[@class='doc-whatsnew-container']/ol/li")
+    element_ar=(doc/"div[@class='doc-whatsnew-container']")
     if element_ar
      element_ar.each  do |parag|
         puts "Application Update= "+parag.inner_html if @@debug == 1
