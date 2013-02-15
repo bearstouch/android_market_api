@@ -223,6 +223,12 @@ class AndroidMarketApplication
     end
   end
 
+  class << self
+    def debug=(is_debug)
+      @@debug = is_debug ? 1 : 0
+    end
+  end
+
 end
 
 
