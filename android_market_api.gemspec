@@ -22,4 +22,11 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
   s.add_runtime_dependency "hpricot"
+
+  #
+  # development dependencies
+  #
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "pry"
+  s.add_development_dependency "pry-nav"
 end
