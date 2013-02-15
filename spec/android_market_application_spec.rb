@@ -5,6 +5,7 @@ describe AndroidMarketApplication do
   before do
     AndroidMarketApplication.debug = 1
   end
+
   describe "#initialize" do
     subject{ AndroidMarketApplication.new(package, language) }
 
