@@ -1,8 +1,8 @@
-# About Android Market API 
+# About Android Market API {<img src="https://secure.travis-ci.org/drecom/android_market_api.png" />}[http://travis-ci.org/drecom/android_market_api]
 
-## What is Android Market API 
+## What is Android Market API
 
-Android Market API  is an open source Android Market Ruby Library for parsing Android Market information. 
+Android Market API  is an open source Android Market Ruby Library for parsing Android Market information.
 
 This project is under development.
 
@@ -27,29 +27,29 @@ or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
 	require 'android_market_api'
 
 	app=AndroidMarketApplication.new('com.bearstouch.smsscheduler')
-	   
- 	# Getting Application Name  
-    puts app.name             
+
+ 	# Getting Application Name
+    puts app.name
 
 	# Getting Application Current Version
     puts app.current_version
 
 	# Getting Application Price
-    puts app.price             
+    puts app.price
 
     # Getting Ratting Value
     puts app.ratting_value
 
     # Getting  Nr of Votes
-    puts app.ratting_count 
+    puts app.ratting_count
 
     # Getting  Last Update datetime
-    puts app.updated   
+    puts app.updated
 
     # Getting  SDK Required
     puts app.sdk_required
 
-    # Getting  Download category 
+    # Getting  Download category
     puts app.downloads
 
     # Getting  Application Size
@@ -61,10 +61,10 @@ or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
     # Getting  Application description
     puts app.description
 
-	# Getting Developer Name       
+	# Getting Developer Name
     puts app.developer_name
 
-	# Getting Icon URL    
+	# Getting Icon URL
     puts app.icon
 
     # Getting Screenshot URLs Array
@@ -74,33 +74,33 @@ or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
     puts app.update_text
 
 ### Get Top selling free app in position (Overall Ranking)
-	
+
 	require 'rubygems'
 	require 'android_market_api'
-	
+
 	#Overall Position 15 Free Apps
 	app=AndroidMarket.get_overall_top_selling_free_app(15)
-	
+
 	...
 
 ### Get Top selling paid app in position (Overall Ranking)
-	
+
 	require 'rubygems'
 	require 'android_market_api'
-	
+
 	#Overall Position 20 Free Apps
 	app=AndroidMarket.get_overall_top_selling_paid_app(20)
-	
+
 	...
 
 ### Get Top selling paid app in position (Category Ranking)
 
 	require 'rubygems'
 	require 'android_market_api'
-	
+
 	#Position 10 in Category 'BOOKS_AND_REFERENCE'
 	app=AndroidMarket.get_top_selling_paid_app_in_category('BOOKS_AND_REFERENCE',10)
-	
+
 	....
 
 ### Get Top selling free app in position (Category Ranking)
@@ -110,25 +110,25 @@ or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
 
 	#Position 1 in Category COMMUNICATION
 	app=AndroidMarket.get_top_selling_free_app_in_category('COMMUNICATION',1)
-	
+
 	....
-	
-### Get Game Categories	
-	
+
+### Get Game Categories
+
 	require 'rubygems'
 	require 'android_market_api'
-	
+
 	game_categories_ar=AndroidMarket.get_game_categories
-	
+
 	...
 
-### Get App Categories	
-	
+### Get App Categories
+
 	require 'rubygems'
 	require 'android_market_api'
 
 	app_categories_ar=AndroidMarket.get_application_categories
-	
+
 	...
 
 ## License and copyright ##
