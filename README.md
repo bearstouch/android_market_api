@@ -12,124 +12,142 @@ Fell free to clone it and submit your changes to us.
 
 Install it with [RubyGems](https://rubygems.org/)
 
-    gem install android_market_api
+```
+gem install android_market_api
+```
 
 or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
 
-    gem "android_market_api"
+```ruby
+gem "android_market_api"
+
+```
 
 ## Getting started ##
 
 ###For parsing an application on Android Market
 
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	require 'rubygems'
-	require 'android_market_api'
+app=AndroidMarketApplication.new('com.bearstouch.smsscheduler')
 
-	app=AndroidMarketApplication.new('com.bearstouch.smsscheduler')
+# Getting Application Name
+puts app.name
 
- 	# Getting Application Name
-    puts app.name
+# Getting Application Current Version
+puts app.current_version
 
-	# Getting Application Current Version
-    puts app.current_version
+# Getting Application Price
+puts app.price
 
-	# Getting Application Price
-    puts app.price
+# Getting Ratting Value
+puts app.ratting_value
 
-    # Getting Ratting Value
-    puts app.ratting_value
+# Getting  Nr of Votes
+puts app.ratting_count
 
-    # Getting  Nr of Votes
-    puts app.ratting_count
+# Getting  Last Update datetime
+puts app.updated
 
-    # Getting  Last Update datetime
-    puts app.updated
+# Getting  SDK Required
+puts app.sdk_required
 
-    # Getting  SDK Required
-    puts app.sdk_required
+# Getting  Download category
+puts app.downloads
 
-    # Getting  Download category
-    puts app.downloads
+# Getting  Application Size
+puts app.size
 
-    # Getting  Application Size
-    puts app.size
+# Getting  Content Ratting
+puts app.contentRating
 
-    # Getting  Content Ratting
-    puts app.contentRating
+# Getting  Application description
+puts app.description
 
-    # Getting  Application description
-    puts app.description
+# Getting Developer Name
+puts app.developer_name
 
-	# Getting Developer Name
-    puts app.developer_name
+# Getting Icon URL
+puts app.icon
 
-	# Getting Icon URL
-    puts app.icon
+# Getting Screenshot URLs Array
+puts app.screenshots
 
-    # Getting Screenshot URLs Array
-    puts app.screenshots
-
- 	# Getting Last Updates Array
-    puts app.update_text
+# Getting Last Updates Array
+puts app.update_text
+```
 
 ### Get Top selling free app in position (Overall Ranking)
 
-	require 'rubygems'
-	require 'android_market_api'
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	#Overall Position 15 Free Apps
-	app=AndroidMarket.get_overall_top_selling_free_app(15)
+#Overall Position 15 Free Apps
+app=AndroidMarket.get_overall_top_selling_free_app(15)
 
-	...
+...
+```
 
 ### Get Top selling paid app in position (Overall Ranking)
 
-	require 'rubygems'
-	require 'android_market_api'
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	#Overall Position 20 Free Apps
-	app=AndroidMarket.get_overall_top_selling_paid_app(20)
+#Overall Position 20 Free Apps
+app=AndroidMarket.get_overall_top_selling_paid_app(20)
 
-	...
+...
+```
 
 ### Get Top selling paid app in position (Category Ranking)
 
-	require 'rubygems'
-	require 'android_market_api'
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	#Position 10 in Category 'BOOKS_AND_REFERENCE'
-	app=AndroidMarket.get_top_selling_paid_app_in_category('BOOKS_AND_REFERENCE',10)
+#Position 10 in Category 'BOOKS_AND_REFERENCE'
+app=AndroidMarket.get_top_selling_paid_app_in_category('BOOKS_AND_REFERENCE',10)
 
-	....
+....
+```
 
 ### Get Top selling free app in position (Category Ranking)
 
-	require 'rubygems'
-	require 'android_market_api'
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	#Position 1 in Category COMMUNICATION
-	app=AndroidMarket.get_top_selling_free_app_in_category('COMMUNICATION',1)
+#Position 1 in Category COMMUNICATION
+app=AndroidMarket.get_top_selling_free_app_in_category('COMMUNICATION',1)
 
-	....
+....
+```
 
 ### Get Game Categories
 
-	require 'rubygems'
-	require 'android_market_api'
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	game_categories_ar=AndroidMarket.get_game_categories
+game_categories_ar=AndroidMarket.get_game_categories
 
-	...
+...
+```
 
 ### Get App Categories
 
-	require 'rubygems'
-	require 'android_market_api'
+```ruby
+require 'rubygems'
+require 'android_market_api'
 
-	app_categories_ar=AndroidMarket.get_application_categories
+app_categories_ar=AndroidMarket.get_application_categories
 
-	...
+...
+```
 
 ## License and copyright ##
 
