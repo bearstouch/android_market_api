@@ -7,10 +7,15 @@ describe AndroidMarketApplication do
   end
 
   describe "#initialize" do
-    subject{ AndroidMarketApplication.new(package, language) }
+    subject{ @app }
 
     let(:package)  { "com.twitter.android" }
     let(:language) { "en" }
+
+    before(:all) do
+      # call API once. for fast test
+      @app = AndroidMarketApplication.new(package, language)
+    end
 
     its(:package)         { should == package }
     its(:language)        { should == language }
