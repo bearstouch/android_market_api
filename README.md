@@ -1,4 +1,4 @@
-# About Android Market API {<img src="https://secure.travis-ci.org/drecom/android_market_api.png" />}[http://travis-ci.org/drecom/android_market_api]
+# About Android Market API [![Build Status](https://travis-ci.org/drecom/android_market_api.png)](https://travis-ci.org/drecom/android_market_api)
 
 ## What is Android Market API
 
