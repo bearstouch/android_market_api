@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe AndroidMarketApplication do
   before(:all) do
-    AndroidMarketApplication.debug = true
+    AndroidMarketApplication.debug = false
   end
 
   describe "#initialize" do
