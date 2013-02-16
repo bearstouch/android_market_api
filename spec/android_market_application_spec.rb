@@ -15,6 +15,7 @@ describe AndroidMarketApplication do
     its(:package)         { should == package }
     its(:language)        { should == language }
     its(:name)            { should == "Twitter" }
+    its(:developer_name)  { should == "Twitter, Inc." }
     its(:current_version) { should     be_an_instance_of String }
     its(:current_version) { should_not be_empty }
     its(:price)           { should_not be_empty }
@@ -39,8 +40,6 @@ describe AndroidMarketApplication do
     its(:description)     { should     be_an_instance_of String }
     its(:screenshots)     { should_not be_empty }
     its(:screenshots)     { should     be_an_instance_of Array }
-    its(:developer_name)  { should_not be_empty }
-    its(:developer_name)  { should     be_an_instance_of String }
     its(:icon)            { should_not be_empty }
     its(:icon)            { should     be_an_instance_of String }
     its(:update_text)     { should_not be_empty }
