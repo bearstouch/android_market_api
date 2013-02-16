@@ -2,8 +2,8 @@
 require 'spec_helper'
 
 describe AndroidMarketApplication do
-  before do
-    AndroidMarketApplication.debug = 1
+  before(:all) do
+    AndroidMarketApplication.debug = true
   end
 
   describe "#initialize" do
