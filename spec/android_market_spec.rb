@@ -13,6 +13,7 @@ describe AndroidMarket do
   let(:category) { "BOOKS_AND_REFERENCE" }
   let(:position) { 1 }
   let(:language) { "en" }
+  let(:developer_name) { "Google Inc." }
 
   describe "#get_top_selling_free_app_in_category" do
     subject { AndroidMarket.get_top_selling_free_app_in_category(category, position, language) }
@@ -36,5 +37,12 @@ describe AndroidMarket do
     subject { AndroidMarket.get_overall_top_selling_paid_app(position, language) }
 
     it{ should be_an_instance_of AndroidMarketApplication }
+  end
+
+  describe "#get_developer_app_list" do
+    subject { AndroidMarket.get_developer_app_list(developer_name, position, language) }
+
+    it{ should be_an_instance_of Array }
+    its(:first){ should be_an_instance_of AndroidMarketApplication }
   end
 end
