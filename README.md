@@ -20,7 +20,6 @@ or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
 
 ```ruby
 gem "android_market_api"
-
 ```
 
 ## Getting started ##
