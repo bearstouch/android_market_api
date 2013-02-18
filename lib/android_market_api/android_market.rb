@@ -20,7 +20,7 @@ class AndroidMarket
   @@debug=false
 
   def AndroidMarket.get_top_selling_free_app_in_category(category,position,language='en')
-    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&num=24&hl=#{language}"
+    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     buy_div=doc.search("//div[@data-analyticsid='top-free']//div[@class='goog-inline-block carousel-cell']").first
     puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
@@ -29,7 +29,7 @@ class AndroidMarket
   end
   
   def AndroidMarket.get_top_selling_paid_app_in_category(category,position,language='en')
-    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&num=24&hl=#{language}"
+    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     buy_div=doc.search("//div[@data-analyticsid='top-paid']//div[@class='goog-inline-block carousel-cell']").first
     puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
@@ -39,7 +39,7 @@ class AndroidMarket
   
 
   def AndroidMarket.get_overall_top_selling_free_app(position,language='en')
-    url = "https://play.google.com/store/apps/collection/topselling_free?start=#{position-1}&num=24&hl=#{language}"
+    url = "https://play.google.com/store/apps/collection/topselling_free?start=#{position-1}&hl=#{language}"
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
     puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
@@ -48,7 +48,7 @@ class AndroidMarket
   end
   
   def AndroidMarket.get_overall_top_selling_paid_app(position,language='en')
-    url = "https://play.google.com/store/apps/collection/topselling_paid?start=#{position-1}&num=24&hl=#{language}"
+    url = "https://play.google.com/store/apps/collection/topselling_paid?start=#{position-1}&hl=#{language}"
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
     puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
@@ -57,7 +57,7 @@ class AndroidMarket
   end
 
   def AndroidMarket.get_developer_app_list(developer_name, position, language='en')
-    url="https://play.google.com/store/apps/developer?id="+CGI.escape(developer_name)+"&start="+(position-1).to_s+"&num=24&hl="+language
+    url="https://play.google.com/store/apps/developer?id="+CGI.escape(developer_name)+"&start="+(position-1).to_s+"&hl="+language
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
     buy_lis=doc.search("li[@class='goog-inline-block']") 
     apps = Array.new
