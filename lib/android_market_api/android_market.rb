@@ -27,9 +27,9 @@ class AndroidMarket
   end
   
   def AndroidMarket.get_top_selling_paid_app_in_category(category,position,language='en')
-    url="https://market.android.com/details?id=apps_topselling_paid&cat="+category+"&start="+(position-1).to_s+"&num=24&hl="+language
+    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&num=24&hl=#{language}"
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_div=doc.search("//div[@class='buy-border']//a").first 
+    buy_div=doc.search("//div[@data-analyticsid='top-paid']//div[@class='goog-inline-block carousel-cell']").first
     puts "Getting Application package "+buy_div.attributes['data-docid']
     app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
     return app
