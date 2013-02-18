@@ -19,4 +19,10 @@ describe AndroidMarket do
 
     it{ should be_an_instance_of AndroidMarketApplication }
   end
+
+  describe "#get_top_selling_paid_app_in_category" do
+    subject { AndroidMarket.get_top_selling_paid_app_in_category(category, position, language) }
+
+    it{ should be_an_instance_of AndroidMarketApplication }
+  end
 end
