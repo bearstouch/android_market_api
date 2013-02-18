@@ -44,7 +44,6 @@ describe AndroidMarketApplication do
       its(:update_text)     { should     be_an_instance_of String }
     end
 
-
     context "com.twitter.android" do
       before(:all) do
         # call API once. because API call is very heavy!
@@ -58,6 +57,23 @@ describe AndroidMarketApplication do
       its(:language)        { should == language }
       its(:name)            { should == "Twitter" }
       its(:developer_name)  { should == "Twitter, Inc." }
+
+      it_behaves_like "all field applied some value"
+    end
+
+    context "jp.drecom.sg.nprwidget" do
+      before(:all) do
+        # call API once. because API call is very heavy!
+        @app = AndroidMarketApplication.new(package, language)
+      end
+
+      let(:package)  { "jp.drecom.sg.nprwidget" }
+      let(:language) { "jp" }
+
+      its(:package)         { should == package }
+      its(:language)        { should == language }
+      its(:name)            { should == "ちょこっとファーム　ひよこ時計" }
+      its(:developer_name)  { should == "株式会社ドリコム" }
 
       it_behaves_like "all field applied some value"
     end
