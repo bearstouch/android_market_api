@@ -25,4 +25,10 @@ describe AndroidMarket do
 
     it{ should be_an_instance_of AndroidMarketApplication }
   end
+
+  describe "#get_overall_top_selling_free_app" do
+    subject { AndroidMarket.get_overall_top_selling_free_app(position, language) }
+
+    it{ should be_an_instance_of AndroidMarketApplication }
+  end
 end
