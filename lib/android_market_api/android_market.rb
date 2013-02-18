@@ -13,9 +13,9 @@ require File.expand_path(File.dirname(__FILE__) + "/android_market_application")
 
 class AndroidMarket
 
-@@game_categories=Array.[]('ARCADE','BRAIN','CARDS','CASUAL','GAME_WALLPAPER','RACING','SPORTS_GAMES','GAME_WIDGETS')
-@@application_categories=Array.[]('BOOKS_AND_REFERENCE','BUSINESS','COMICS','COMMUNICATION','EDUCATION','ENTERTAINMENT','FINANCE','HEALTH_AND_FITNESS','LIBRARIES_AND_DEMO','LIFESTYLE','APP_WALLPAPER','MEDIA_AND_VIDEO','MEDICAL','MUSIC_AND_AUDIO','NEWS_AND_MAGAZINES','PERSONALIZATION','PHOTOGRAPHY','PRODUCTIVITY','SHOPPING','SOCIAL','SPORTS','TOOLS','TRANSPORTATION','TRAVEL_AND_LOCAL','WEATHER','APP_WIDGETS')
-@@languages=Array.[]('en','pt_PT','pt_BR','es','es_419','fr','it','es')
+  @@game_categories=Array.[]('ARCADE','BRAIN','CARDS','CASUAL','GAME_WALLPAPER','RACING','SPORTS_GAMES','GAME_WIDGETS')
+  @@application_categories=Array.[]('BOOKS_AND_REFERENCE','BUSINESS','COMICS','COMMUNICATION','EDUCATION','ENTERTAINMENT','FINANCE','HEALTH_AND_FITNESS','LIBRARIES_AND_DEMO','LIFESTYLE','APP_WALLPAPER','MEDIA_AND_VIDEO','MEDICAL','MUSIC_AND_AUDIO','NEWS_AND_MAGAZINES','PERSONALIZATION','PHOTOGRAPHY','PRODUCTIVITY','SHOPPING','SOCIAL','SPORTS','TOOLS','TRANSPORTATION','TRAVEL_AND_LOCAL','WEATHER','APP_WIDGETS')
+  @@languages=Array.[]('en','pt_PT','pt_BR','es','es_419','fr','it','es')
  
   def AndroidMarket.get_top_selling_free_app_in_category(category,position,language='en')
     url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&num=24&hl=#{language}"
@@ -71,11 +71,11 @@ class AndroidMarket
   end
   
   def AndroidMarket.get_game_categories()
-      return @@game_categories
+    return @@game_categories
   end
   
   def AndroidMarket.get_application_categories()
-      return @@application_categories
+    return @@application_categories
   end
 end  
 
