@@ -10,13 +10,13 @@ describe AndroidMarket do
     it{ should include "BOOKS_AND_REFERENCE" }
   end
 
-  let(:category) { "BOOKS_AND_REFERENCE" }
+  let(:category) { "books" }
   let(:position) { 1 }
   let(:language) { "en" }
 
   describe "#get_top_selling_free_app_in_category" do
     subject { AndroidMarket.get_top_selling_free_app_in_category(category, position, language) }
 
-    it{ should have_at_least(1).items }
+    it{ should an_instance_of AndroidMarketApplication }
   end
 end

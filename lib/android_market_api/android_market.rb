@@ -18,11 +18,12 @@ class AndroidMarket
 @@languages=Array.[]('en','pt_PT','pt_BR','es','es_419','fr','it','es')
  
   def AndroidMarket.get_top_selling_free_app_in_category(category,position,language='en')
-    url="https://market.android.com/details?id=apps_topselling_free&cat="+category+"&start="+(position-1).to_s+"&num=24&hl="+language
+    url = "https://play.google.com/store/apps/collection/topselling_free?start=#{position-1}&num=24&hl=#{language}"
     doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_div=doc.search("//div[@class='buy-border']//a").first 
-    puts "Getting Application package "+buy_div.attributes['data-docid']
-    app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
+    buy_div=doc.search("//li[@class='goog-inline-block']").first
+    package = buy_div.attributes['data-docid']
+    puts "Getting Application package "+package
+    app=AndroidMarketApplication.new(package,language)
     return app
   end
   
