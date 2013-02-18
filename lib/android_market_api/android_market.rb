@@ -22,38 +22,26 @@ class AndroidMarket
   class << self
     def get_top_selling_free_app_in_category(category,position,language='en')
       url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
-      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-      buy_div=doc.search("//div[@data-analyticsid='top-free']//div[@class='goog-inline-block carousel-cell']").first
-      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-      return app
+      xpath = "//div[@data-analyticsid='top-free']//div[@class='goog-inline-block carousel-cell']"
+      get_app_in_summaries(url, xpath, language)
     end
 
     def get_top_selling_paid_app_in_category(category,position,language='en')
       url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
-      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-      buy_div=doc.search("//div[@data-analyticsid='top-paid']//div[@class='goog-inline-block carousel-cell']").first
-      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-      return app
+      xpath = "//div[@data-analyticsid='top-paid']//div[@class='goog-inline-block carousel-cell']"
+      get_app_in_summaries(url, xpath, language)
     end
 
     def get_overall_top_selling_free_app(position,language='en')
       url = "https://play.google.com/store/apps/collection/topselling_free?start=#{position-1}&hl=#{language}"
-      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-      buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
-      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-      return app
+      xpath = "//div[@class='num-pagination-page']//li[@class='goog-inline-block']"
+      get_app_in_summaries(url, xpath, language)
     end
 
     def get_overall_top_selling_paid_app(position,language='en')
       url = "https://play.google.com/store/apps/collection/topselling_paid?start=#{position-1}&hl=#{language}"
-      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-      buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
-      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-      return app
+      xpath = "//div[@class='num-pagination-page']//li[@class='goog-inline-block']"
+      get_app_in_summaries(url, xpath, language)
     end
 
     def get_developer_app_list(developer_name, position, language='en')
@@ -83,5 +71,14 @@ class AndroidMarket
     def debug=(is_debug)
       @@debug = is_debug
     end
+
+    private
+    def get_app_in_summaries(url, xpath, language)
+      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+      buy_div=doc.search(xpath).first
+      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
+      AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
+    end
+
   end
 end
