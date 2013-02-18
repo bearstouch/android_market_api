@@ -48,6 +48,7 @@ describe AndroidMarketApplication do
       before(:all) do
         # call API once. because API call is very heavy!
         @app = AndroidMarketApplication.new(package, language)
+        p @app
       end
 
       let(:package)  { "com.twitter.android" }
