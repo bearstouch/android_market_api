@@ -8,12 +8,15 @@
 require 'rubygems'
 require 'open-uri'
 require 'hpricot'
+require File.expand_path(File.dirname(__FILE__) + "/util")
 
 class AndroidMarketApplication
 
   attr_accessor :package, :language,:name, :current_version,:price, :rating_value, :rating_count,
                 :updated, :sdk_required, :category, :downloads, :size, :content_rating, :description,
                 :screenshots, :developer_name, :icon, :update_text
+
+  include AndroidMarketApi::Util
 
   @@debug=0
   ###########################################################################################
@@ -38,7 +41,7 @@ class AndroidMarketApplication
     @developer_name=""    # Developer Name
     @icon=""              # Icon URL
     @screenshots=[]
-    @update_text=[]
+    @update_text=""
     parse_in_android_market(language)
   end
 
@@ -158,7 +161,7 @@ class AndroidMarketApplication
   def fill_downloads(doc)
     element=doc.at("dd[@itemprop='numDownloads']")
     if element
-      @downloads=element.children.first
+      @downloads=element.children.first.to_s
       puts "Application install category="+@downloads.to_s if @@debug == 1
     end
   end
@@ -182,13 +185,13 @@ class AndroidMarketApplication
   def fill_description(doc)
     element=doc.at("div[@id='doc-original-text']")
     if element
-      @description=element.inner_html
+      @description=sanitize(element.inner_html)
       puts "Application Description ="+@description.to_s   if @@debug == 1
     end
   end
 
   def fill_screenshots(doc)
-    element_ar=(doc/"div[@class='screenshot-carousel-content-container']/img")
+    element_ar=(doc/"div[@class='screenshot-carousel-content-container']/div/img")
     if element_ar
       element_ar.each  do |img|
         puts "addding "+img['src'].to_s if @@debug == 1
@@ -214,12 +217,16 @@ class AndroidMarketApplication
   end
 
   def fill_changed_text(doc)
-    element_ar=(doc/"div[@class='doc-whatsnew-container']/ol/li")
-    if element_ar
-     element_ar.each  do |parag|
-        puts "Application Update= "+parag.inner_html if @@debug == 1
-        @update_text << parag.inner_html
-     end
+    element=(doc/"div[@class='doc-whatsnew-container']")
+    if element
+      @update_text=element.inner_html
+      puts "Application Update= "+element.inner_html if @@debug == 1
+    end
+  end
+
+  class << self
+    def debug=(is_debug)
+      @@debug = is_debug ? 1 : 0
     end
   end
 
