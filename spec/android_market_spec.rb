@@ -17,6 +17,6 @@ describe AndroidMarket do
   describe "#get_top_selling_free_app_in_category" do
     subject { AndroidMarket.get_top_selling_free_app_in_category(category, position, language) }
 
-    it{ should an_instance_of AndroidMarketApplication }
+    it{ should be_an_instance_of AndroidMarketApplication }
   end
 end
