@@ -19,68 +19,67 @@ class AndroidMarket
 
   @@debug=false
 
-  def AndroidMarket.get_top_selling_free_app_in_category(category,position,language='en')
-    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
-    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_div=doc.search("//div[@data-analyticsid='top-free']//div[@class='goog-inline-block carousel-cell']").first
-    puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-    app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-    return app
-  end
-  
-  def AndroidMarket.get_top_selling_paid_app_in_category(category,position,language='en')
-    url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
-    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_div=doc.search("//div[@data-analyticsid='top-paid']//div[@class='goog-inline-block carousel-cell']").first
-    puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-    app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-    return app
-  end
-  
-
-  def AndroidMarket.get_overall_top_selling_free_app(position,language='en')
-    url = "https://play.google.com/store/apps/collection/topselling_free?start=#{position-1}&hl=#{language}"
-    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
-    puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-    app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-    return app
-  end
-  
-  def AndroidMarket.get_overall_top_selling_paid_app(position,language='en')
-    url = "https://play.google.com/store/apps/collection/topselling_paid?start=#{position-1}&hl=#{language}"
-    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
-    puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
-    app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
-    return app
-  end
-
-  def AndroidMarket.get_developer_app_list(developer_name, position, language='en')
-    url="https://play.google.com/store/apps/developer?id="+CGI.escape(developer_name)+"&start="+(position-1).to_s+"&hl="+language
-    doc = Hpricot(open(url,'User-Agent' => 'ruby'))
-    buy_lis=doc.search("li[@class='goog-inline-block']") 
-    apps = Array.new
-    buy_lis.each do |buy_li|
-      puts "Getting Application package "+buy_li.attributes['data-docid'] if @@debug
-      apps << AndroidMarketApplication.new(buy_li.attributes['data-docid'],language)
-    end
-    return apps 
-  end
-  
-  def AndroidMarket.get_languages()
-    return @@languages
-  end
-  
-  def AndroidMarket.get_game_categories()
-    return @@game_categories
-  end
-  
-  def AndroidMarket.get_application_categories()
-    return @@application_categories
-  end
-
   class << self
+    def get_top_selling_free_app_in_category(category,position,language='en')
+      url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
+      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+      buy_div=doc.search("//div[@data-analyticsid='top-free']//div[@class='goog-inline-block carousel-cell']").first
+      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
+      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
+      return app
+    end
+
+    def get_top_selling_paid_app_in_category(category,position,language='en')
+      url = "https://play.google.com/store/apps/category/#{category}?start=#{position-1}&hl=#{language}"
+      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+      buy_div=doc.search("//div[@data-analyticsid='top-paid']//div[@class='goog-inline-block carousel-cell']").first
+      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
+      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
+      return app
+    end
+
+    def get_overall_top_selling_free_app(position,language='en')
+      url = "https://play.google.com/store/apps/collection/topselling_free?start=#{position-1}&hl=#{language}"
+      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+      buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
+      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
+      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
+      return app
+    end
+
+    def get_overall_top_selling_paid_app(position,language='en')
+      url = "https://play.google.com/store/apps/collection/topselling_paid?start=#{position-1}&hl=#{language}"
+      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+      buy_div=doc.search("//div[@class='num-pagination-page']//li[@class='goog-inline-block']").first
+      puts "Getting Application package "+buy_div.attributes['data-docid'] if @@debug
+      app=AndroidMarketApplication.new(buy_div.attributes['data-docid'],language)
+      return app
+    end
+
+    def get_developer_app_list(developer_name, position, language='en')
+      url="https://play.google.com/store/apps/developer?id="+CGI.escape(developer_name)+"&start="+(position-1).to_s+"&hl="+language
+      doc = Hpricot(open(url,'User-Agent' => 'ruby'))
+      buy_lis=doc.search("li[@class='goog-inline-block']")
+      apps = Array.new
+      buy_lis.each do |buy_li|
+        puts "Getting Application package "+buy_li.attributes['data-docid'] if @@debug
+        apps << AndroidMarketApplication.new(buy_li.attributes['data-docid'],language)
+      end
+      return apps
+    end
+
+    def get_languages()
+      return @@languages
+    end
+
+    def get_game_categories()
+      return @@game_categories
+    end
+
+    def get_application_categories()
+      return @@application_categories
+    end
+
     def debug=(is_debug)
       @@debug = is_debug
     end
