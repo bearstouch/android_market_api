@@ -8,12 +8,15 @@
 require 'rubygems'
 require 'open-uri'
 require 'hpricot'
+require File.expand_path(File.dirname(__FILE__) + "/util")
 
 class AndroidMarketApplication
 
   attr_accessor :package, :language,:name, :current_version,:price, :rating_value, :rating_count,
                 :updated, :sdk_required, :category, :downloads, :size, :content_rating, :description,
                 :screenshots, :developer_name, :icon, :update_text
+
+  include AndroidMarketApi::Util
 
   @@debug=0
   ###########################################################################################
@@ -182,7 +185,7 @@ class AndroidMarketApplication
   def fill_description(doc)
     element=doc.at("div[@id='doc-original-text']")
     if element
-      @description=element.inner_html
+      @description=sanitize(element.inner_html)
       puts "Application Description ="+@description.to_s   if @@debug == 1
     end
   end
