@@ -10,7 +10,7 @@ describe AndroidMarket do
     it{ should include "BOOKS_AND_REFERENCE" }
   end
 
-  let(:category) { "books" }
+  let(:category) { "BOOKS_AND_REFERENCE" }
   let(:position) { 1 }
   let(:language) { "en" }
 
