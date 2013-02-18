@@ -10,6 +10,20 @@ describe AndroidMarket do
     it{ should include "BOOKS_AND_REFERENCE" }
   end
 
+  describe "#get_languages" do
+    subject { AndroidMarket.get_languages }
+
+    it{ should have_at_least(1).items }
+    it{ should include "en" }
+  end
+
+  describe "#get_game_categories" do
+    subject { AndroidMarket.get_game_categories }
+
+    it{ should have_at_least(1).items }
+    it{ should include "ARCADE" }
+  end
+
   let(:category) { "BOOKS_AND_REFERENCE" }
   let(:position) { 1 }
   let(:language) { "en" }
